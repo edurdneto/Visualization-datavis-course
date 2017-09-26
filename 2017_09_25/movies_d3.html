@@ -74,7 +74,7 @@
 		}
 
 		var comparePorBudget = function (a, b) {
-			return a.Budget_M < b.Budget_M?-1:1;
+			return a.Budget_M > b.Budget_M?-1:1;
 		};
 
 		d3.json("movies.json", function(error, json){
