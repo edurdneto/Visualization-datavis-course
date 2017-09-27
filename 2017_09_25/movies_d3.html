@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Carregando dados de arquivo</title>
+	<title>Aula 27/09</title>
 	<link rel="stylesheet" href="css/styles.css">
 	<script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
@@ -10,6 +10,14 @@
 <body>
 	<h1>Bilheteria</h1>
 	<div id="chart"></div>
+	<h1>Orçamento</h1>
+	<div id="chart2"></div>
+	<h1>Lucro</h1>
+	<div id="chart3"></div>
+	<h1>Bilheteria por Gênero</h1>
+	<div id="chart4"></div>
+
+
 	<script type="text/javascript">
 		function render(data,comparator) {
 			d3.select("#chart").selectAll("div.h-bar")
@@ -38,14 +46,6 @@
 			return a.Worldwide_Gross_M > b.Worldwide_Gross_M?-1:1;
 		};
 
-		d3.json("movies.json", function(error, json){
-			render(json,comparePorWorldwideGross);
-		});
-	</script>
-
-	<h1>Custo</h1>
-	<div id="chart2"></div>
-	<script type="text/javascript">
 		function render2(data,comparator) {
 			d3.select("#chart2").selectAll("div.h-bar")
 					.data(data)
@@ -60,7 +60,7 @@
 					return (d.Budget_M * 3) + "px";
 				})
 				.style("background-color", function(d){
-					return "green";
+					return "#40E0D0";
 				})
 				.select("span")
 					.text(function (d) {
@@ -77,14 +77,6 @@
 			return a.Budget_M > b.Budget_M?-1:1;
 		};
 
-		d3.json("movies.json", function(error, json){
-			render2(json,comparePorBudget);
-		});
-	</script>
-
-	<h1>Lucro</h1>
-	<div id="chart3"></div>
-	<script type="text/javascript">
 		function render3(data,comparator) {
 			d3.select("#chart3").selectAll("div.h-bar")
 					.data(data)
@@ -99,7 +91,7 @@
 					return (d.Worldwide_Gross_M-d.Budget_M) / 3 + "px";
 				})
 				.style("background-color", function(d){
-					return "red";
+					return "#DAA520";
 				})
 				.select("span")
 					.text(function (d) {
@@ -116,9 +108,87 @@
 			return a.Worldwide_Gross_M-a.Budget_M >b.Worldwide_Gross_M-b.Budget_M?-1:1;
 		};
 
+		function render4(data,comparator) {
+			d3.select("#chart4").selectAll("div.h-bar")
+					.data(data)
+				.enter().append("div")
+				.attr("class", "h-bar")
+				.append("span");
+
+			d3.select("#chart4").selectAll("div.h-bar")
+					.data(data)
+				.attr("class", "h-bar")
+				.style("width", function (d) {
+					return (d.number) / 10 + "px";
+				})
+				.style("background-color", function(d){
+					return "purple";
+				})
+				.select("span")
+					.text(function (d) {
+						return d.genre;
+					});
+
+			if(comparator)
+				d3.select("#chart4")
+					.selectAll("div.h-bar")
+					.sort(comparator);
+		}
+
+		var comparePorGenero = function (a, b) {
+			return a.number >b.number?-1:1;
+		};
+
 		d3.json("movies.json", function(error, json){
+			render(json,comparePorWorldwideGross);
+			render2(json,comparePorBudget);
 			render3(json,comparePorLucro);
+
+			var data2 = [
+				{"genre":"Action","number":0},
+				{"genre":"Thriller","number":0},
+				{"genre":"Fantasy","number":0},
+				{"genre":"Animation","number":0},
+				{"genre":"Adventure","number":0},
+				{"genre":"Drama","number":0},
+				{"genre":"Romance","number":0},
+			]
+			for (i = 0; i < json.length; i++) {
+				if (json[i].Genre=="Action") {
+					data2[0].number = data2[0].number + json[i].Worldwide_Gross_M;
+				} else {
+					if (json[i].Genre=="Thriller") {
+						data2[1].number = data2[1].number + json[i].Worldwide_Gross_M;
+					} else {
+						if (json[i].Genre=="Fantasy") {
+							data2[2].number = data2[2].number + json[i].Worldwide_Gross_M;
+						} else {
+							if (json[i].Genre=="Animation") {
+								data2[3].number = data2[3].number + json[i].Worldwide_Gross_M;
+							} else {
+								if (json[i].Genre=="Adventure") {
+									data2[4].number = data2[4].number + json[i].Worldwide_Gross_M;
+								} else {
+									if (json[i].Genre=="Drama") {
+										data2[5].number = data2[5].number + json[i].Worldwide_Gross_M;
+									} else {
+										if (json[i].Genre=="Romance") {
+											data2[6].number = data2[6].number + json[i].Worldwide_Gross_M;
+										} else {
+
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			render4(data2,comparePorGenero);
 		});
+
+
+
 	</script>
 
 </body>
