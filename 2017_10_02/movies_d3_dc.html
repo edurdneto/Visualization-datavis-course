@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Movies</title>
+    <link rel="stylesheet" href="css/dc.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/crossfilter.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="js/dc.js" charset="utf-8"></script>
+
+</head>
+<body>
+
+    <h1>Resultado das bilheterias por ano</h1>
+    <div id="chart"></div>
+    <h1>Resultado das bilheterias por genero</h1>
+    <div id="chart2"></div>
+
+
+	<script type="text/javascript">
+        var barChartAno = dc.barChart('#chart');
+        var barChartGenero = dc.barChart('#chart2');
+    		d3.json("movies.json", function(error, json){
+                //criando um crossfilter
+                var facts = crossfilter(json);
+                var YearDim = facts.dimension(function(d){
+                    return d.Year;
+                });
+                var GenreDim = facts.dimension(function(d){
+                    return d.Genre;
+                });
+                var WorldwideGrossByGroupYear = YearDim.group().reduceSum(function(d){
+                    return d.Worldwide_Gross_M;
+                });
+                var WorldwideGrossByGroupGenre = GenreDim.group().reduceSum(function(d){
+                    return d.Worldwide_Gross_M;
+                });
+                barChartAno.width(800)
+                         .height(400)
+                         .margins({top: 30, right: 50, bottom: 25, left: 40})
+                         .dimension(YearDim)
+                         .x(d3.scale.linear().domain([2006, 2012]))
+                         .renderHorizontalGridLines(true)
+                         .brushOn(false)
+                         .group(WorldwideGrossByGroupYear, 'Year')
+                         .centerBar(true)
+                         .round(dc.round.floor)
+                         .alwaysUseRounding(true)
+                         .xAxis().tickFormat(d3.format('d'));
+                barChartGenero.width(800)
+                         .height(400)
+                         .margins({top: 30, right: 50, bottom: 25, left: 40})
+                         .dimension(GenreDim)
+                         .x(d3.scale.ordinal().domain(json.map(function(d){return d.Genre;})))
+                         .xUnits(dc.units.ordinal)
+                         .group(WorldwideGrossByGroupGenre)
+                         .renderHorizontalGridLines(true)
+                         .brushOn(false);
+                dc.renderAll();
+    		});
+	</script>
+</body>
+</html>
