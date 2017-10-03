@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Carregando dados de um arquivo csv</title>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		d3.csv("stocks.csv", function(data){
+        d3.select("body").selectAll("p")
+          .data(data)
+          .enter()
+          .append("p")
+          .text(function(d) {return "Data: " + d.date + " Apple: " + d.apple + " Facebook: " + d.facebook;
+		      });
+        });
+
+	</script>
+</body>
+</html>
