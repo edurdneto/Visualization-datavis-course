@@ -31,6 +31,9 @@
 			<div class='container-fluid'>
 				<h1> Crimes em Chicago </h1>
 				<div id="mapid"></div>
+				<div id='crimeSumChart'>
+					<h4> Total de crimes por categoria </h4>
+				</div>
 			</div>
 			<script type="text/javascript">
 			// Create the dc.js chart objects & link to divs
@@ -46,6 +49,8 @@
 				maxZoom: 17
 			}).addTo(map);
 
+			var crimeSumChart = dc.barChart('#crimeSumChart');
+
 
 			// load data from a csv file
 			d3.csv("Crimes_Chicago_Sep2017.csv", function (data) {
@@ -53,16 +58,33 @@
 			  var dtgFormat = d3.time.format.utc("%Y-%m-%dT%H:%M:%S");
 
 			  data.forEach(function(d){
-					d.dtg = dtgFormat.parse(d.Date.substr(0,19));
+					//d.dtg = dtgFormat.parse(d.Date.substr(0,19));
 					d.lat = +d.Latitude;
 					d.long = +d.Longitude;
-					
+
+					//console.log(d["Primary Type"]);
+					var color_var = 'black';
+					var fillColor_var = 'black'
 					//agrupar por tipo eṕara cada tipo escolher uma cor no circulo a seguinte
+					if(d["Primary Type"] == "ROBBERY"){
+						color_var = '#fdae61';
+						fillColor_var = '#fdae61'
+					} else {
+						if(d["Primary Type"] == "HOMICIDE"){
+							color_var = '#d7191c';
+							fillColor_var = '#d7191c'
+						} else {
+							if(d["Primary Type"] == "BURGLARY"){
+								color_var = '#ffffbf';
+								fillColor_var = '#ffffbf'
+							}
+						}
+					}
 
 					var circle = L.circle([d.lat, d.long], 50, {
-						color: '#fd8d3c',
+						color: color_var,
 						weight: 2,
-						fillColor: '#fecc5c',
+						fillColor: fillColor_var,
 						fillOpacity: 0.5
 					}).addTo(map);
 					//circle.bindPopup("Magnitude: "+d.mag+"<br>Time: "+d.origintime.substr(0,19));
@@ -79,6 +101,14 @@
 			  //Create dataTable dimension using the date (dtg)
 			 var dateDime = facts.dimension(function (d) {
 			   return d.dtg;
+			 });
+
+			 var typeCrimeDim = facts.dimension(function(d){
+					return d["Primary Type"];
+			 });
+
+			 var sumByGroup = typeCrimeDim.group().reduceSum(function(d){
+					return 1;
 			 });
 
 			  //Create a dimension for Magnitude
@@ -98,10 +128,10 @@
 
 			  // Create a dimension just for the hour from the datetime in the dataset
 			  //hint: use d3.time.hour() function
-			  var hourDime = facts.dimension(function(d){return d3.time.hour(d.dtg)});
+			  //var hourDime = facts.dimension(function(d){return d3.time.hour(d.dtg)});
 
 			  //Create a group for the hour dimension that just counts the number of elements per hour
-			  var hourDimeCount = hourDime.group()
+			  //var hourDimeCount = hourDime.group()
 
 			  // Setup the charts
 
@@ -167,6 +197,20 @@
 				.sortBy(function(d){return d.dtg})
 				.order(d3.ascending);
 */
+				crimeSumChart.width(650)
+					   .height(500)
+					   .x(d3.scale.ordinal())
+					   .y(d3.scale.linear().domain([0,12500]))
+					   .xUnits(dc.units.ordinal)
+					   .brushOn(false)
+					   .xAxisLabel('Categoria de Crime')
+					   .yAxisLabel('Total')
+					   .margins({top: 10, right: 50, bottom: 50, left: 60})
+					   .dimension(typeCrimeDim)
+					   .barPadding(0.1)
+					   .outerPadding(0.05)
+					   .group(sumByGroup);
+
 
 			  dc.renderAll();
 
