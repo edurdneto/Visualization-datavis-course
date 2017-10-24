@@ -14,13 +14,7 @@
 			<script src="js/crossfilter.js" charset="utf-8"></script>
 			<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 			<script src="js/dc.js" charset="utf-8"></script>
-			<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
-			integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
-			crossorigin=""/>
-			<!-- Make sure you put this AFTER Leaflet's CSS -->
-			<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
-			integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
-			crossorigin=""></script>
+
 
 			<style type="text/css">
 
@@ -30,7 +24,6 @@
 		<body>
 			<div class='container-fluid'>
 				<h1> Earthquakes in New Zealand </h1>
-				<div id="mapid"></div>
 				<div id='magnitude-chart'>
 				  <h4> Number of Events by Magnitude </h4>
 				</div>
@@ -63,11 +56,6 @@
 			var magnitudeChart = dc.barChart("#magnitude-chart")
 			var depthChat = dc.barChart("#depth-chart")
 			var hourChart = dc.lineChart("#time-chart")
-			var map = L.map('mapid').setView([-41.05,172.93], 5);
-			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-				attribution: '&copy; <a href="http://www.openstreetmap.org/">OpenStreetMap</a>contributors',
-				maxZoom: 17
-			}).addTo(map);
 
 
 			// load data from a csv file
@@ -81,17 +69,7 @@
 					d.long = +d.longitude;
 					d.mag = d3.round(+d.magnitude, 1);
 					d.depth = d3.round(+d.depth, 0);
-					var circle = L.circle([d.lat, d.long], 10000, {
-						color: '#fd8d3c',
-						weight: 2,
-						fillColor: '#fecc5c',
-						fillOpacity: 0.5
-					}).addTo(map);
-					circle.bindPopup("Magnitude: "+d.mag+"<br>Time: "+d.origintime.substr(0,19));
-
-
-			  });
-
+				});
 
 			  console.log(data);
 
