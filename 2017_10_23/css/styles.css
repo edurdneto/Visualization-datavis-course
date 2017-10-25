@@ -9,8 +9,7 @@ h4 span {
 
 h2 {
 	float: right;
-	text-align: center;
-}
+  }
 
 h2 span {
 	font-size:14px;
@@ -18,7 +17,7 @@ h2 span {
 }
 
 h1 {
-	color: #2b5e8c;
+	color: #3F3F3F;
 	text-align: center;
 }
 
