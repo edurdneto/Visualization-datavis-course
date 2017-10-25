@@ -30,9 +30,8 @@
 		<body>
 			<div class='container-fluid'>
 				<h1> Crimes em Chicago </h1>
-				<div id="mapid">
-					<h4> Mapa de crimes </h4>
-				</div>
+				<h4> Mapa de crimes </h4>
+				<div id="mapid"></div>
 				<div id='crimeSumChart'>
 					<h4> Total de crimes por categoria </h4>
 				</div>
@@ -110,16 +109,14 @@
 			 });
 
 			 var typeCrimeDim = facts.dimension(function(d){
-					return d["Primary Type"];
+					return d.crimetype;
 			 });
 
-			 var sumByGroup = typeCrimeDim.group().reduceSum(function(d){
-					return 1;
-			 });
+			 var sumByGroup = typeCrimeDim.group();
 
 			 var dayCrimeTypeDimension = facts.dimension(function (d){
-          return [d3.time.day(d.dtg), d.crimetype];
-       });
+		  return [d3.time.day(d.dtg), d.crimetype];
+	   });
 
 			 var dayCrimeTypeCount = dayCrimeTypeDimension.group();
 
@@ -141,23 +138,22 @@
 					   .group(sumByGroup)
 						 .ordering(function(d) { return d.value; })
 						 .on('renderlet', function(chart){
-			 					chart.selectAll('rect.bar').each(function(d){
-			 							 d3.select(this).attr("style", "fill: " + colorScale(d.x)); // use key accessor if you are using a custom accessor
+								 chart.selectAll('rect.bar').each(function(d){
+										  d3.select(this).attr("style", "fill: " + colorScale(d.x)); // use key accessor if you are using a custom accessor
 								});
-			 			});
+						 });
 
-						crimeDayChart
-						  .width(960)
-						  .height(480)
-						  .margins({top: 10, right: 10, bottom:20, left: 40})
-						  .dimension(dayCrimeTypeDimension)
-						  .group(dayCrimeTypeCount)
-						  .transitionDuration(500)
-							.seriesAccessor(function(d) { return d.key[1]; })
-							.keyAccessor(function(d) {return d.key[0];})
-						  .x(d3.time.scale().domain(d3.extent(data, function(d) { return d3.time.day(d.dtg); })))
-						  .elasticY(true)
-							.ordinalColors(['#3288bd','#d7191c','#fdae61']);
+				crimeDayChart.width(960)
+						.height(480)
+						.margins({top: 10, right: 10, bottom:20, left: 40})
+						.dimension(dayCrimeTypeDimension)
+						.group(dayCrimeTypeCount)
+						.transitionDuration(500)
+						.seriesAccessor(function(d) { return d.key[1]; })
+						.keyAccessor(function(d) {return d.key[0];})
+						.x(d3.time.scale().domain(d3.extent(data, function(d) { return d3.time.day(d.dtg); })))
+						.elasticY(true)
+						.ordinalColors(['#3288bd','#d7191c','#fdae61']);
 
 
 			  dc.renderAll();
