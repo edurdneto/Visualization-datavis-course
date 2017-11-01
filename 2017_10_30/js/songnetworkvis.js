@@ -168,7 +168,7 @@ function Network() {
     // enter / exit for links
     updateLinks();
     // set the tick callback, charge and linkDistance
-    force.on("tick", forceTick).charge(-100).linkDistance(50);
+    force.on("tick", forceTick).charge(-100).linkDistance(100);
     // perform rendering and start force layout
     return force.start();
 };
