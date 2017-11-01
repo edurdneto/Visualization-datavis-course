@@ -36,6 +36,9 @@ function Network() {
     circleRadius = d3.scale.sqrt().range([3, 15]).domain(countExtent);
     //First let's randomly dispose data.nodes (x/y) within the the width/height
     // of the visualization and set a fixed radius for now
+    var max = 0;
+    var nome = null;
+    var artist = null;
     data.nodes.forEach(function(n) {
       var randomnumber;
       // set initial x/y to values within the width/height
@@ -44,7 +47,13 @@ function Network() {
       n.y = randomnumber = Math.floor(Math.random() * height);
       // add radius to the node so we can use it later
       n.radius = circleRadius(n.playcount);
+      if(n.playcount>max) {
+        max = n.playcount;
+        nome = n.name;
+        artist = n.artist;
+      }
     });
+    document.getElementById("root").innerHTML = "The music " + nome + " by " + artist + " is in the root of the tree.";
 
     // Then we will create a map with
     // id's -> node objects
