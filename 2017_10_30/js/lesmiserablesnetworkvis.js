@@ -112,14 +112,17 @@ function Network() {
     });
     // set cx, cy, r attributes and stroke-width style
     node.enter()
-        .append("circle").attr("fill", function(d) { return color(d.group); }).attr("class", "node").attr("cx", function(d) {
+        .append("circle").attr("class", "node").attr("cx", function(d) {
             return d.x;})
         .attr("cy", function(d) {
             return d.y;})
         .attr("r", function(d) {
             return d.radius;})
-        .style("stroke-width", 1.0);
-    node.on("mouseover", showDetails).on("mouseout", hideDetails);
+        .style("stroke-width", 1.0)
+        .style("fill","#225ea8");
+    node.on("mouseover", showDetails)
+      .on("mouseout", hideDetails)
+      .call(force.drag);
   }
 
   // enter/exit display for links
@@ -130,7 +133,7 @@ function Network() {
     link.enter()
         .append("line")
         .attr("class", "link")
-        .attr("stroke", "#ddd").attr("stroke-opacity", 0.8)
+        .attr("stroke", "#ddd").attr("stroke-opacity", 1)
         .attr("x1", function(d) {
           return d.source.x; })
         .attr("y1", function(d) {
@@ -181,7 +184,7 @@ function Network() {
     // enter / exit for links
     updateLinks();
     // set the tick callback, charge and linkDistance
-    force.on("tick", forceTick).charge(-200).linkDistance(300);
+    force.on("tick", forceTick).charge(-100).linkDistance(200);
     // perform rendering and start force layout
     return force.start();
 
