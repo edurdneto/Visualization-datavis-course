@@ -83,9 +83,9 @@ function Network() {
   // Mouseover tooltip function
   function showDetails(d, i) {
     var content;
-    content = '<p class="main">' + d.id + '</span></p>';
+    content = '<p class="main">' + "Name: "+ d.id + '</span></p>';
     content += '<hr class="tooltip-hr">';
-    content += '<p class="main">' + d.count + '</span></p>';
+    content += '<p class="main">' + "Connections: "+ d.count + '</span></p>';
     tooltip.showTooltip(content, d3.event);
 
     // highlight the node being moused over
