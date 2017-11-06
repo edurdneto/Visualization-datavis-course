@@ -93,7 +93,7 @@
 	// get color depending on number of cases
 	let quantize = d3.scale.quantize()
     .domain([0, 70])
-    .range(brewerColors);
+    .range(colorbrewer.Greens[9]);
 
 	function style(feature) {
 		 return {
@@ -162,14 +162,14 @@
 
 		let div = L.DomUtil.create('div', 'info legend'),
 			labels = [],
-            n = brewerColors.length,
+            n = colorbrewer.Greens[9].length,
 			from, to;
 
 		for (let i = 0; i < n; i++) {
-			let c = brewerColors[i];
+			let c = colorbrewer.Greens[9][i];
             let fromto = quantize.invertExtent(c);
 			labels.push(
-				'<i style="background:' + brewerColors[i] + '"></i> ' +
+				'<i style="background:' + colorbrewer.Greens[9][i] + '"></i> ' +
 				d3.round(fromto[0]) + (d3.round(fromto[1]) ? '&ndash;' + d3.round(fromto[1]) : '+'));
 		}
 
