@@ -2,19 +2,19 @@
 <html>
 <head>
 	<title>Número de homicídios em Fortaleza em 2012</title>
-	<meta charset="UTF-8"> 
+	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
 	<!-- Bootstrap includes -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> 
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
    integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
    crossorigin=""/>
    <!-- Make sure you put this AFTER Leaflet's CSS -->
- 	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+	 <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
    integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
    crossorigin=""></script>
    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -55,23 +55,23 @@
 <body>
 
 <div class="container">
-	<h1> Número de Homicídios em Fortaleza em 2012</h1>
+	<h1> Taxa de Homicídios em Fortaleza em 2012</h1>
 	<p>
 		Dados retirados do site da <a href="http://www.sspds.ce.gov.br/">SSPDS</a>.
-	</p>	
-    <div id="map">
+	</p>
+	<div id="map">
 		<strong>Homicídios por Bairro</strong>
-    </div>
+	</div>
 </div>
 <script type="text/javascript" src="data/bairros.js"></script>
 <script type="text/javascript">
-    let brewerColors = colorbrewer.Blues[5];
-	
+	let brewerColors = colorbrewer.Blues[5];
+
 	let map = L.map('map').setView([-3.792614,-38.515877], 12);
 	L.tileLayer("https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
 	{ attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>',
 	maxZoom: 18}).addTo(map);
-	
+
 	// control that shows state info on hover
 	let info = L.control();
 
@@ -82,18 +82,18 @@
 	};
 
 	info.update = function (feat) {
-            //console.log(feat);
-			this._div.innerHTML = '<h5>Número de homicídios</h5>' +  (feat ?
-				'<b>' + feat.properties.NOME + '</b><br />' + homicidiosByName.get(feat.properties.NOME) + ' homicídios'
+			//console.log(feat);
+			this._div.innerHTML = '<h5>Taxa de homicídios</h5>' +  (feat ?
+				'<b>' + feat.properties.NOME + '</b><br />' + homicidiosByName.get(feat.properties.NOME) + ' homicídios/100000 hab'
 				: 'Passe o mouse sobre um bairro');
 	};
 
 	info.addTo(map);
-	
+
 	// get color depending on number of cases
 	let quantize = d3.scale.quantize()
-    .domain([0, 70])
-    .range(colorbrewer.Greens[9]);
+	.domain([0, 400])
+	.range(colorbrewer.Reds[9]);
 
 	function style(feature) {
 		 return {
@@ -107,7 +107,7 @@
 	}
 	function highlightFeature(e) {
 		let layer = e.target;
-        //console.log(e.target)
+		//console.log(e.target)
 
 		layer.setStyle({
 					weight: 2,
@@ -140,36 +140,36 @@
 					click: zoomToFeature
 				});
 	}
-    let homicidiosByName = d3.map();
+	let homicidiosByName = d3.map();
 
 	d3.csv("data/homicidios_2012.csv", function(data){
-        //format data
-        data.forEach(function(d) {
-            homicidiosByName.set(d.Bairro,+d.Homicidios);
-        });
-		
-		//bairrosData is defined in file bairros.js		 		
+		//format data
+		data.forEach(function(d) {
+			homicidiosByName.set(d.Bairro,+(Math.round(d.Homicidios*100000/d.Populacao*100)/100));
+		});
+
+		//bairrosData is defined in file bairros.js
 		geojson = L.geoJson(bairrosData, {
 				style: style,
 				onEachFeature: onEachFeature
 		}).addTo(map);
-		
-	});			
-	
+
+	});
+
 	let legend = L.control({position: 'bottomright'});
 
 	legend.onAdd = function (map) {
 
 		let div = L.DomUtil.create('div', 'info legend'),
 			labels = [],
-            n = colorbrewer.Greens[9].length,
+			n = colorbrewer.Greens[9].length,
 			from, to;
 
 		for (let i = 0; i < n; i++) {
-			let c = colorbrewer.Greens[9][i];
-            let fromto = quantize.invertExtent(c);
+			let c = colorbrewer.Reds[9][i];
+			let fromto = quantize.invertExtent(c);
 			labels.push(
-				'<i style="background:' + colorbrewer.Greens[9][i] + '"></i> ' +
+				'<i style="background:' + colorbrewer.Reds[9][i] + '"></i> ' +
 				d3.round(fromto[0]) + (d3.round(fromto[1]) ? '&ndash;' + d3.round(fromto[1]) : '+'));
 		}
 
@@ -177,7 +177,7 @@
 		return div;
 	};
 
-   	legend.addTo(map);
+	   legend.addTo(map);
 </script>
 
 </body>
