@@ -100,7 +100,8 @@
           d.long = +d.longitude;
           d.mag = d3.round(+d.magnitude, 1);
           d.depth = d3.round(+d.depth, 0);
-          var circle = L.circle([d.lat, d.long], 10000, {
+          var size = d.mag * 10000
+          var circle = L.circle([d.lat, d.long], size, {
             color: '#fd8d3c',
             weight: 2,
             fillColor: '#fecc5c',
@@ -173,6 +174,9 @@
           .gap(1)
           .x(d3.scale.linear().domain([0,100]))
           .elasticY(true)
+          .on("filtered", function(chart,filter){
+                    updateMarkers();
+        });
         // Configure Time line graph
         // height: 150
         //x dimension: build the time scale from the data: d3.time.scale().domain(d3.extent(data, function(d) { return d.dtime; }))
