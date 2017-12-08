@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Trabalho Final - Visualização Científica</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/dc.css"/>
+    <link href="css/one-page-wonder.css" rel="stylesheet">
+    <style>@import url(../../css/fan-of-mike-style.css);</style>
+
+    <script type="text/javascript" src="js/_VisualSedimentation.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <link href="sedivn.css" rel="stylesheet" type="text/css"/>  
+
+    <script type="text/javascript" src="../../js/lib/StreamPlayer/streamPlayer.js"></script>
+    <script type="text/javascript" src="utils.js"></script>
+    <script type="text/javascript" src="chart_sedivn.js"></script>
+    <script type="text/javascript" src="chart_distribution.js"></script>
+
+
+    <style>
+        #map {
+            width: 1139px;
+            height: 700px;
+        }
+
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
+
+        .legend {
+            text-align: left;
+            line-height: 18px;
+            color: #555;
+        }
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+        .dc-chart g.row text {fill: black;}
+
+    </style>
+
+</head>
+
+
+</head>
+
+<body>
+
+    
+
+        <div class="featurette" id="Top10">
+            <h2 class="featurette-heading">Top 10 Trend Topics </h2> 
+            <h3>T4: Time-based Twitter <br> Trending Topics</h3>
+                  <p class="description">
+                    No contexto atual do crescente uso de redes sociais, o Twitter se caracteriza por
+                    ser uma das mais famosas e utilizadas redes sociais ao redor do mundo. Nas publicações, os usuários dispõem de 140 caracteres para se comunicar, informar ou
+                    simplesmente emitir opiniões acerca dos mais variados assuntos. Nesse contexto,
+                    surgem os trending topics, que são os conjuntos de caracteres que evidenciam os
+                    assuntos e fatos mais comentados do momento. Um dos assuntos que mais geram trending topics são os eventos esportivos, devido a sua adesão e relevância
+                    a nível mundial. Dessa forma, este projeto tem como objetivo propor uma
+                    análise de trending topics, por meio da utilização de técnicas de visualização, considerando dados espaço-temporais provenientes dos usuários do Twitter.
+                  </p>
+
+                  <span id="simple-stream-player" >
+                    <a id="btn-playpause" class="btn pause btn-mini" href="#" style="text-align:left">Pause&nbsp;<i class="icon-pause"></i></a>
+                    <a id="btn-repeat" class="btn btn-mini" href="#" style="text-align:left">Restart&nbsp;<i class="icon-repeat"></i></a>
+                    <a id="btn-sound" class="btn btn-mini sound" href="#" >Sound&nbsp;<i class="icon-volume-up"></i></a>
+                  </span>
+                  <div style="position:absolute; left:320px; top:0px; width:400px">
+                    <div id="barChartOverlay" style="position:absolute; top:80px;"></div> 
+                    <div id="barChart" style="position:absolute; top:-100px;"></div> 
+                    <div id="distribution" style="position:absolute; top:280px"></div>
+                
+                  
+                  <div id="top10">
+                      <script type="text/javascript" src="top10.js"></script>
+                  </div> 
+                  
+        </div>
+
+
+    
+
+</body>
+
+</html>
