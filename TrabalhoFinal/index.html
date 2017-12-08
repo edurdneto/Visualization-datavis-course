@@ -3,64 +3,64 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-    <title>Trabalho Final - Visualização Científica</title>
+	<title>Trabalho Final - Visualização Científica</title>
 
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/dc.css"/>
-    <link href="css/one-page-wonder.css" rel="stylesheet">
-    <style>@import url(../../css/fan-of-mike-style.css);</style>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/dc.css"/>
+	<link href="css/one-page-wonder.css" rel="stylesheet">
+	<style>@import url(../../css/fan-of-mike-style.css);</style>
 
-    <script type="text/javascript" src="js/_VisualSedimentation.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/_VisualSedimentation.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 
-    <link href="sedivn.css" rel="stylesheet" type="text/css"/>  
+	<!-- <link href="sedivn.css" rel="stylesheet" type="text/css"/> -->
 
-    <script type="text/javascript" src="../../js/lib/StreamPlayer/streamPlayer.js"></script>
-    <script type="text/javascript" src="utils.js"></script>
-    <script type="text/javascript" src="chart_sedivn.js"></script>
-    <script type="text/javascript" src="chart_distribution.js"></script>
+	<script type="text/javascript" src="../../js/lib/StreamPlayer/streamPlayer.js"></script>
+	<script type="text/javascript" src="utils.js"></script>
+	<script type="text/javascript" src="chart_sedivn.js"></script>
+	<script type="text/javascript" src="chart_distribution.js"></script>
 
 
-    <style>
-        #map {
-            width: 1139px;
-            height: 700px;
-        }
+	<style>
+		#map {
+			width: 1139px;
+			height: 700px;
+		}
 
-        .info {
-            padding: 6px 8px;
-            font: 14px/16px Arial, Helvetica, sans-serif;
-            background: white;
-            background: rgba(255,255,255,0.8);
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-            border-radius: 5px;
-        }
-        .info h4 {
-            margin: 0 0 5px;
-            color: #777;
-        }
+		.info {
+			padding: 6px 8px;
+			font: 14px/16px Arial, Helvetica, sans-serif;
+			background: white;
+			background: rgba(255,255,255,0.8);
+			box-shadow: 0 0 15px rgba(0,0,0,0.2);
+			border-radius: 5px;
+		}
+		.info h4 {
+			margin: 0 0 5px;
+			color: #777;
+		}
 
-        .legend {
-            text-align: left;
-            line-height: 18px;
-            color: #555;
-        }
-        .legend i {
-            width: 18px;
-            height: 18px;
-            float: left;
-            margin-right: 8px;
-            opacity: 0.7;
-        }
-        .dc-chart g.row text {fill: black;}
+		.legend {
+			text-align: left;
+			line-height: 18px;
+			color: #555;
+		}
+		.legend i {
+			width: 18px;
+			height: 18px;
+			float: left;
+			margin-right: 8px;
+			opacity: 0.7;
+		}
+		.dc-chart g.row text {fill: black;}
 
-    </style>
+	</style>
 
 </head>
 
@@ -69,205 +69,214 @@
 
 <body>
 
-     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Início</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#introdução">Introdução</a>
-                    </li>
-                     <li>
-                        <a href="#Desafios">Desafios</a>
-                    </li>
-                    <li>
-                        <a href="#Top10">Top 10</a>
-                    </li>
-                    <li>
-                        <a href="#Tecnologias">Tecnologias</a>
-                    </li>
-                    <li>
-                        <a href="#texto-mapa">Mapa</a>
-                    </li>
-                    <li>
-                        <a href="#Morte">Morte</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+	 <!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Início</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="#introdução">Introdução</a>
+					</li>
+					 <li>
+						<a href="#Desafios">Desafios</a>
+					</li>
+					<li>
+						<a href="#Tecnologias">Tecnologias</a>
+					</li>
+					<li>
+						<a href="#Metodologia">Metodologia</a>
+					</li>
+					<li>
+						<a href="#Top10">Top 10</a>
+					</li>
+					<li>
+						<a href="#texto-mapa">Mapa</a>
+					</li>
+					<li>
+						<a href="#Morte">Morte</a>
+					</li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
 
-    <!-- Full Width Image Header -->
-    <header class="header-image">
-        <div class="headline">
-            <div class="overlay">
-                <div class="container">
-                    <h1 class="display-1 text-white">Twitter</h1>
-                    <h2>Análise dos Trend Topics de eventos esportivos</h2>
-                </div>
-            </div>
-        </div>
-    </header>
+	<!-- Full Width Image Header -->
+	<header class="header-image">
+		<div class="headline">
+			<div class="overlay">
+				<div class="container">
+					<h1 class="display-1 text-white">Twitter</h1>
+					<h2>Análise dos Trend Topics de eventos esportivos</h2>
+				</div>
+			</div>
+		</div>
+	</header>
 
-    <!-- Page Content -->
-    <div class="container">
+	<!-- Page Content -->
+	<div class="container">
 
-        <hr class="featurette-divider">
+		<hr class="featurette-divider">
 
-        <!-- First Featurette -->
-        <div class="featurette" id="introdução">
-        <h2 class="featurette-heading">Introdução </h2>
-            <h3>
-               <span class="lead">
-                O objetivo desse trabalho é fazer uma análise detalhada sobre os trending topics do twitter de eventos espertivos, que nos permitam fazer os seguintes questionamentos:
-                <ul>
-                    <li>Quais os 10 mais propulares trending topics em um dado período?</li>
-                    <li>Em que países mais se comenta sobre uma dada hashtag?</li>
-                    <li>É possivel identificar a origem de uma hashtag?</li>
-                </ul>
-               </span>
-            </h3>
-            <!-- <div id="partidos">
-                <script type="text/javascript" src="partidos.js"></script>
-            </div> -->
+		<!-- First Featurette -->
+		<div class="featurette" id="introdução">
+		<h2 class="featurette-heading">Introdução </h2>
+			<h3>
+			   <span class="lead">
+				O objetivo desse trabalho é fazer uma análise detalhada sobre os trending topics do twitter de eventos espertivos, que nos permitam fazer os seguintes questionamentos:
+				<ul>
+					<li>Quais os 10 mais propulares trending topics em um dado período?</li>
+					<li>Em que países mais se comenta sobre uma dada hashtag?</li>
+					<li>É possivel identificar a origem de uma hashtag?</li>
+				</ul>
+			   </span>
+			</h3>
+			<!-- <div id="partidos">
+				<script type="text/javascript" src="partidos.js"></script>
+			</div> -->
 
-        </div>
+		</div>
 
-        <hr class="featurette-divider">
+		<hr class="featurette-divider">
 
-        <!-- Problemas judiciais  -->
+		<!-- Problemas judiciais  -->
 
-        <div class="featurette" id="Desafios">
-        <h2 class="featurette-heading">Desafios </h2>
-            <h3>
-               <span class="lead">
-                <ul>
-                    <li>Coleta de Dados</li>
-                    <li>Falta de padrão nos dados</li>
-                    <li>Dados incompletos - sem localização</li>
-                </ul>
-               </span>
-            </h3>
-            <!-- <div id="judicial">
-                <script type="text/javascript" src="judicial.js"></script>
-            </div> -->
-        </div>
+	<div class="featurette" id="Desafios">
+	<h2 class="featurette-heading">Desafios </h2>
+		<h3>
+		   <span class="lead">
+				<ul>
+					<li>Coleta de Dados</li>
+					<li>Falta de padrão nos dados</li>
+					<li>Dados incompletos - sem localização</li>
+				</ul>
+		   </span>
+		</h3>
+	</div>
 
-    <hr class="featurette-divider">
+	<hr class="featurette-divider">
 
-        <!-- Tecnologias Ultilizadas  -->
-    <div class="featurette" id="Tecnologias">    
-    <h2 class="featurette-heading">Tecnologias </h2>
-            <!-- <h3>
-               <span class="lead">
-                <ul>
-                    <li>-</li>
-                    <li>-</li>
-                    <li>-</li>
-                </ul>
-               </span>
-            </h3> -->
-            <table>
-                <tr>
-                    <td>
-                        <div id="myDemo">Visual Sedimentation</div>
-                            <script type="text/javascript" src="helloWorld.js"></script>
-                    </td>
-                    <td><img src="https://abs.twimg.com/icons/apple-touch-icon-192x192.png"></td>
-                    <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTlbJyQLvpPZP4oPyrCnbxSQgszQz8CvRvj7o0e7E5B3fbnWwG"></td>
-                    <td><img src="https://www.creative-tim.com/assets/icon-bootstrap-7cec419b71f47386f443bd3fbfef2f7c.jpg"></td>
+	<div class="featurette" id="Metodologia">
+	<h2 class="featurette-heading">Metodologia </h2>
+		<h3>
+		   <span class="lead">
+				<ul>
+					<li>Coleta de mais de 3 gigabytes de dados do tweeter entre os dias de ...</li>
+					<li>Foram usados como filtro de pesquisa 100 hashtags de eventos espeortivos</li>
+					<li>Foram coletados mais de x hashtags no total</li>
+				</ul>
+		   </span>
+		</h3>
+	</div>
 
-                </tr>
-            </table>
+	<hr class="featurette-divider">
 
-        </div>
+		<!-- Tecnologias Ultilizadas  -->
+	<div class="featurette" id="Tecnologias">
+	<h2 class="featurette-heading">Tecnologias </h2>
+			<table>
+				<tr>
+					<td>
+						<div id="myDemo">Visual Sedimentation</div>
+							<script type="text/javascript" src="helloWorld.js"></script>
+					</td>
+					<td><img src="https://abs.twimg.com/icons/apple-touch-icon-192x192.png"></td>
+					<td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTlbJyQLvpPZP4oPyrCnbxSQgszQz8CvRvj7o0e7E5B3fbnWwG"></td>
+					<td><img src="https://www.creative-tim.com/assets/icon-bootstrap-7cec419b71f47386f443bd3fbfef2f7c.jpg"></td>
+					<td><img src="http://www.webopixel.net/blog/wp-content/uploads/2014/04/d3-icon.png"></td>
+				</tr>
+			</table>
 
-          <!-- Grafico de Barra -->
-       <hr class="featurette-divider">
+		</div>
 
-        <div class="featurette" id="Top10">
-            <h2 class="featurette-heading">Top 10 Trend Topics </h2> 
-            <h3>T4: Time-based Twitter <br> Trending Topics</h3>
-                  <p class="description">
-                    No contexto atual do crescente uso de redes sociais, o Twitter se caracteriza por
-                    ser uma das mais famosas e utilizadas redes sociais ao redor do mundo. Nas publicações, os usuários dispõem de 140 caracteres para se comunicar, informar ou
-                    simplesmente emitir opiniões acerca dos mais variados assuntos. Nesse contexto,
-                    surgem os trending topics, que são os conjuntos de caracteres que evidenciam os
-                    assuntos e fatos mais comentados do momento. Um dos assuntos que mais geram trending topics são os eventos esportivos, devido a sua adesão e relevância
-                    a nível mundial. Dessa forma, este projeto tem como objetivo propor uma
-                    análise de trending topics, por meio da utilização de técnicas de visualização, considerando dados espaço-temporais provenientes dos usuários do Twitter.
-                  </p>
+		  <!-- Grafico de Barra -->
+	   <hr class="featurette-divider">
 
-                  <span id="simple-stream-player" >
-                    <a id="btn-playpause" class="btn pause btn-mini" href="#" style="text-align:left">Pause&nbsp;<i class="icon-pause"></i></a>
-                    <a id="btn-repeat" class="btn btn-mini" href="#" style="text-align:left">Restart&nbsp;<i class="icon-repeat"></i></a>
-                    <a id="btn-sound" class="btn btn-mini sound" href="#" >Sound&nbsp;<i class="icon-volume-up"></i></a>
-                  </span>
-                  <div style="position:absolute; left:320px; top:0px; width:400px">
-                    <div id="barChartOverlay" style="position:absolute; top:80px;"></div> 
-                    <div id="barChart" style="position:absolute; top:-100px;"></div> 
-                    <div id="distribution" style="position:absolute; top:280px"></div>
-                
-                  
-                  <!-- <div id="top10">
-                      <script type="text/javascript" src="top10.js"></script>
-                  </div> --> 
-                  
-        </div>
+		<div class="featurette" id="Top10">
+			<h2 class="featurette-heading">Top 10 Trend Topics </h2>
+			<h3>
+				  <span class="lead">
+					No contexto atual do crescente uso de redes sociais, o Twitter se caracteriza por
+					ser uma das mais famosas e utilizadas redes sociais ao redor do mundo. Nas publicações, os usuários dispõem de 140 caracteres para se comunicar, informar ou
+					simplesmente emitir opiniões acerca dos mais variados assuntos. Nesse contexto,
+					surgem os trending topics, que são os conjuntos de caracteres que evidenciam os
+					assuntos e fatos mais comentados do momento. Um dos assuntos que mais geram trending topics são os eventos esportivos, devido a sua adesão e relevância
+					a nível mundial. Dessa forma, este projeto tem como objetivo propor uma
+					análise de trending topics, por meio da utilização de técnicas de visualização, considerando dados espaço-temporais provenientes dos usuários do Twitter.
+				  </span>
+			</h3>
+				  <span class="lead">
+					   <ul>
+						   <li>Abrir Grafico de barra dinamico em uma outra pagina</li>
+						   <li>Adicionar Grafico de Linha estatico de hashtags especificas(Top 10) ao longo do tempo</li>
+					   </ul>
+				  </span>
+		</div>
 
 
-        <!-- Mapa -->
-       <hr class="featurette-divider">
+		<!-- Mapa -->
+	   <hr class="featurette-divider">
 
-        <div id="texto-mapa" id="texto-mapa">
-            <h2 class="featurette-heading">Análise dos tweets geograficamente </h2>
-            <h3>
-               <span class="lead"> bla bla</span>
-            </h3>
+		<div class="featurette" id="texto-mapa">
+			<h2 class="featurette-heading">Análise dos tweets geograficamente </h2>
+			<h3>
+			   <span class="lead">
+				 Com o objetivo de análisar geograficamente as principais Trend Topics geramos dois gráficos de mapa.
+				 O primeiro tem como objetivo mostrar os países que mais contribuiram com tweets que ultilizaram a hashtag mais
+				 popular entre as datas x e y. O segundo por sua vez procura mostrar o surgimento dos tweets que ultilizaram uma das
+				 dez mais comentadas hashtags no decorrer do período.
 
-        </div>
-        <!-- <div id="map"></div> -->
+			   </p></span>
+			</h3>
+			<span class="lead">
+				 <ul>
+					 <li>Abrir um mapa dinâmico em uma outra pagina</li>
+					 <li>Adicionar Grafico de mapa estatico da top 1 hashtag</li>
+				 </ul>
+			</span>
 
-
-        <hr class="featurette-divider">
-
-        <!-- Discursos -->
-
-        <div id="texto-mapa">
-            <h2 class="featurette-heading" id="Morte">Morte </h2>
-            <h3>
-               <span class="lead">
-               Blabla
-               </span>
-            </h3>
-        </div>
+		</div>
+		<!-- <div id="map"></div> -->
 
 
+		<hr class="featurette-divider">
+
+		<!-- Discursos -->
+
+		<div id="texto-mapa">
+			<h2 class="featurette-heading" id="Morte">Morte </h2>
+			<h3>
+			   <span class="lead">
+			   Blabla
+			   </span>
+			</h3>
+		</div>
 
 
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </footer>
 
-    </div>
+
+		<!-- Footer -->
+		<footer>
+			<div class="row">
+				<div class="col-lg-12">
+					<p>Copyright &copy; Your Website 2014</p>
+				</div>
+			</div>
+		</footer>
+
+	</div>
 
 
 </body>
