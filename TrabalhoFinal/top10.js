@@ -24,18 +24,18 @@ var entries, table, hashtags, a;
           min_time = d3.min(entries, function(data) {
             return Date.parse(d3.select(data).select("date")[0][0].textContent);
           });
-      
+
 
           max_time = d3.max(entries, function(data) {
             return Date.parse(d3.select(data).select("date")[0][0].textContent);
-          }); 
+          });
 
           current_time=min_time;
-          last_time=current_time;   
+          last_time=current_time;
 
           // Adding one extra day to make the tokens disappear
           max_time += 1000 * 60 * 60 * 27;
-            
+
           var max_size =  d3.max(entries, function(data) {
             return parseInt(d3.select(data).select("size")[0][0].textContent);
           });
@@ -51,7 +51,7 @@ var entries, table, hashtags, a;
                 nb_commits[t] = 0;
               nb_commits[t]++;
           });
-                      
+
           max_commits =  d3.max(nb_commits, function(data) {
             return data;
           });
@@ -84,7 +84,7 @@ var entries, table, hashtags, a;
               var ct = current_time - (max_time - 1 * 1000 * 60 * 60 * 26);
 
               var cd = 1+ct/(1000 * 60 * 60 * 24);
-          
+
               var ch = 24-(cd-Math.floor(cd))*24;
 
               var sh="s", sd="s", leftover="left";
@@ -93,7 +93,7 @@ var entries, table, hashtags, a;
                 cd--;
                 ch=Math.abs(24-ch);
                 leftover = "over";
-              } 
+              }
               if(ch<2) sh = "";
               if(cd<2) sd = "";
 
@@ -145,16 +145,16 @@ var entries, table, hashtags, a;
                 t:dt,
                 category: cat,
                 size: token_scale(parseInt(d3.select(d).select("size")[0][0].textContent)),
-              }); 
+              });
 
               // PLAY SOUND IF ENABLED
               // if(PLAY_SOUND)
               //   _sndCollection[sound_scale(parseInt(d3.select(d).select("size")[0][0].textContent))].play();
-              
+
               // APPEND TO LOG LIST
               $("#logs ul").prepend(
                 $('<li style="font-size:8px; line-height:10px">').append("<span style='color:lightgray'>["+d3.select(d).select("date")[0][0].textContent+"]</span> "+d3.select(d).select("hashtag")[0][0].textContent + ": " + d3.select(d).select("msg")[0][0].textContent+"").delay(1000).fadeOut(1500, function() {})
-              );   
+              );
 
               // HIGHLIGHT COLUMN TEXT
               d3.select(".coltext_"+cat).style("font-size", 10).transition().duration(1000).style("font-size", 10);
@@ -174,7 +174,7 @@ var entries, table, hashtags, a;
 
      sp = new StreamPlayer('simple-stream-player', {
           auto_start: true,
-          current_time: function() { 
+          current_time: function() {
           },
           current_speed: 50,
           current_step: 100000,
@@ -216,5 +216,5 @@ var entries, table, hashtags, a;
           set_current_time(min_time);
           self.updateCallback(true);
         })
-
+        
     });

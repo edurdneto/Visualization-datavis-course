@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Trabalho Final - Visualização Científica</title>
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/dc.css"/> -->
+	<link href="css/one-page-wonder.css" rel="stylesheet">
+	<style>@import url(../../css/fan-of-mike-style.css);</style>
+
+	<script type="text/javascript" src="js/_VisualSedimentation.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<link href="sedivn.css" rel="stylesheet" type="text/css"/>
+
+	<script type="text/javascript" src="../../js/lib/StreamPlayer/streamPlayer.js"></script>
+	<script type="text/javascript" src="utils.js"></script>
+	<script type="text/javascript" src="chart_sedivn.js"></script>
+	<script type="text/javascript" src="chart_distribution.js"></script>
+
+
+
+</head>
+
+
+</head>
+
+<body>
+
+
+   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	   <div class="container">
+			<div class="navbar-header">
+			   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				   <span class="sr-only">Toggle navigation</span>
+				   <span class="icon-bar"></span>
+				   <span class="icon-bar"></span>
+				   <span class="icon-bar"></span>
+			   </button>
+			   <a class="navbar-brand" href="index.html#Inicio">Início</a>
+		   </div>
+		   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			   <ul class="nav navbar-nav">
+				   <li>
+					   <a href="index.html#introdução">Introdução</a>
+				   </li>
+					<li>
+					   <a href="index.html#Desafios">Desafios</a>
+				   </li>
+				   <li>
+					   <a href="index.html#Top10">Top 10</a>
+				   </li>
+				   <li>
+					   <a href="index.html#Tecnologias">Tecnologias</a>
+				   </li>
+				   <li>
+					   <a href="index.html#texto-mapa">Mapa</a>
+				   </li>
+				   <li>
+					   <a href="index.html#Morte">Morte</a>
+				   </li>
+			   </ul>
+		   </div>
+	   </div>
+
+   </nav>
+
+
+
+   <!-- Page Content -->
+   <div class="container">
+	<div class="featurette" id="Top10">
+
+	<h2> ' '</h2>
+	<h3>Time-based Twitter <br> Trending Topics</h3>
+			  <span id="simple-stream-player" >
+					<a id="btn-playpause" class="btn pause btn-mini" href="#" style="text-align:left">Pause&nbsp;<i class="icon-pause"></i></a>
+					<a id="btn-repeat" class="btn btn-mini" href="#" style="text-align:left">Restart&nbsp;<i class="icon-repeat"></i></a>
+					<a id="btn-sound" class="btn btn-mini sound" href="#" >Sound&nbsp;<i class="icon-volume-up"></i></a>
+			  </span>
+
+			  <div style="position:absolute; left:320px; top:0px; width:400px">
+				<div id="barChartOverlay" style="position:absolute; top:80px;"></div>
+				<div id="barChart" style="position:absolute; top:-100px;"></div>
+				<div id="distribution" style="position:absolute; top:280px"></div>
+
+			  </div>
+			  <div id="top10">
+				  <script type="text/javascript" src="top10.js"></script>
+				  <script type="text/javascript" src="chart_legends.js"></script>
+			  </div>
+		</div>
+
+
+</body>
+
+</html>

@@ -6,23 +6,23 @@ function fstrata() {
  }
 
 function fstratum(a) {
-	var res = [];	
+	var res = [];
 	 if(typeof nb_previous_day != "undefined" && !isNaN(nb_previous_day[a]) && !isNaN(nb_previous_day[a]) ) {
     (function(v, h, d, w) {
-       res.push({value: function() { return w; }, label:"Strata Previous Day", category:a}) 
-       res.push({value: function() { return d; }, label:"Strata Previous Week", category:a}) 
+       res.push({value: function() { return w; }, label:"Strata Previous Day", category:a})
+       res.push({value: function() { return d; }, label:"Strata Previous Week", category:a})
        res.push({value: function() { return h; }, label:"Strata Rest", category:a})
     })(a, nb_previous_day[a], nb_previous_week[a], nb_all[a]);
   } else {
-       res.push({value: function() { return 0; }, label:"Strata Previous Day", category:a}) 
-       res.push({value: function() { return 0; }, label:"Strata Previous Week", category:a}) 
+       res.push({value: function() { return 0; }, label:"Strata Previous Day", category:a})
+       res.push({value: function() { return 0; }, label:"Strata Previous Week", category:a})
        res.push({value: function() { return 0; }, label:"Strata Rest", category:a})
   }
   return res;
 }
 
 var chart_sedivn = function(xml) {
-			
+
 			current_time = min_time;
 			prev_time=min_time;
 			d3.select("#min_time").text(min_time);
@@ -32,9 +32,9 @@ var chart_sedivn = function(xml) {
       var mySettings = {
         	width:800,
          	height:350,
-          chart:{	
+          chart:{
 						x:0,
-						y:20,	
+						y:20,
         },
         data:{model:toModel(hashtags),
              strata: function() { return fstrata(); },
@@ -65,7 +65,7 @@ var chart_sedivn = function(xml) {
 
 var w = 800;
 var h = 150;
-       
+
 var xx = d3.scale.linear()
    .domain([0, hashtags.length])
    .range([0, mySettings.width]);
@@ -84,7 +84,7 @@ entries.map(function (data) {
 		nb_commits[t]++;
 });
 
-						
+
 max_commits =  d3.max(nb_commits, function(data) {
   return data;
 });
@@ -159,10 +159,10 @@ var colorRange = d3.scale.category10();
 
       var sediBarChart = $("#barChart").vs(mySettings).data('visualSedimentation');
 
-      var fake_hashtags = Array('#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8', '#9', '#10', '#11')
+      var fake_hashtags = Array('NFL', 'F1', 'WorldCup', 'Barcelona', 'NBA', 'Football', 'BrazilGP', 'RealMadrid', 'Italy', 'football')
 
       d3.selectAll(".gcol").append("text")
-          .attr("dy", "16.5em")    
+          .attr("dy", "16.5em")
           .attr("dx", mySettings.width/(2*mySettings.data.model.length))
           .attr("text-anchor", "middle")
           .attr("vertical-align", "middle")
@@ -173,5 +173,5 @@ var colorRange = d3.scale.category10();
           	//}
           });
 
-   	return sediBarChart;  
+   	return sediBarChart;
   }
